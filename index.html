@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Reliablity and Avalibilty</title>
+    <link rel="stylesheet" href="calcCSS/calc.css">
+</head>
+
+<body>
+    <header>
+        <div class="mainB">
+            <h1>Reliability and Avalibilty Calculator</h1>
+            <p>In order to calculate Reliability and Avalibilty, you need the MTTF and MTTR values.</p>
+        </div>
+    </header>
+   
+    <div class="info">
+        <h1>How MTTF and MTTR are calculated</h1>
+        <p>Reliability is the probability of failure-free operation of a computer program in a specified environment for a specified time.</p>
+        
+        <p> Availability is the probability that a program is operating according to requirements at a given point in time.</p>
+        <p>Reliability = MTTF + MTTR</p>
+        <p>Availability = MTTF/(MTTF + MTTR)</p>
+        <p>MTTF (Mean-Time-To-Failure)</p>
+        <p>MTTF = system up time/number of failures</p>
+        <p>MTTR (Mean-Time-To-Repair)</p>
+        <p>MTTR = repair time/number of repairs</p>
+        
+    </div>
+    <div class="MTTF">
+        <h2>
+            MTTF(Mean-Time-To-Failure)
+        </h2>
+        <form name="MTTf-calc">
+          
+           <label for="uptime" class="ulabel"> Uptime: </label>
+             <input type="text" id="uTime" name="upTime"> <br>
+         
+          
+            <label for="numfail" class="ulabel"> Number of Failures: </label>
+            <input type="text" id="FNum" name="numfailure"><br>
+          
+            
+             
+            <input type="button" id="mttf_submit" value="submit" onclick="handleButton()" > <br>         
+            <label for="MTTF" class="ulabel">  MTTF = </label>
+           <output type="text" id="mttf_result"></output>
+          
+        </form>
+
+       
+    </div>
+
+
+    <div class="MTTR">
+        <h2>MTTR(Mean-Time-To-Repair)</h2>
+        <form name="MTTR-calc">
+             <label for="rep" class="ulabel">  Time to repair:  </label>
+           <input type="text" id="the_time" name="repiar time"><br>
+            <label for="fail" class="ulabel">   Number of repairs:   </label>
+          <input type="text" id="num_repairs" name="number of repairs"><br>
+
+            
+
+            <input type="button" id="mttr_submit" value="submit" onclick="mttrCalcBTN()" ><br>
+            <label for="res" class="ulabel">  MTTR =  </label>
+            <output type="text" id="mttr_result"></output>
+        </form>
+    </div>
+
+    <div class="Reliability">
+        <h2>Reliability Calculator</h2>
+        <p>In order for you to use the calculated values, you have to go calculate MTTF and MTTR first</p>
+      
+      <label for="cal" class="ulabel">  Calculated</label>
+        <input type="radio" name="mode" id="calc"><br>
+      <label for="input" class="ulabel">  User Input</label>
+        <input type="radio" name="mode" id="input"><br>
+
+     <label for="mttf" class="ulabel"> MTTF</label>
+        <input type="text" id="MTTF" name="MTTF"><br>
+   <label for="mttr" class="ulabel"> MTTR</label>
+         <input type="text" id="MTTR" name="MTTR"><br>
+        <input type="button" id="reliability_submit" value="submit" onclick="reliablityCalc()">
+      <label for="res" class="ulabel"> Reliability = </label>
+        <output type="text" id="rel_result"></output>
+    </div>
+
+    <div class="Availability">
+        <h2>Availability Calculator</h2>
+        <p>In order for you to use the calculated values, you have to go through the MTTF and MTTR pages first</p>
+         <label for="cal" class="ulabel">  Calculated</label>
+         <input type="radio" name="mode" id="calc2"><br>
+        <label for="input" class="ulabel">  User Input</label>
+
+      <input type="radio" name="mode" id="input2"><br>
+
+       <label for="mttf" class="ulabel"> MTTF</label>
+         <input type="text" id="MTTF2" name="MTTF"><br>
+        <label for="mttr" class="ulabel"> MTTR</label>
+         <input type="text" id="MTTR2" name="MTTR"><br>
+        <input type="button" id="availability_submit" value="submit" onclick="availCalc()">
+      
+       <label for="res" class="ulabel"> Availability = </label>
+        <output type="text" id="avail_result"></output>
+
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        function handleButton(){
+            //mttf calculation
+            var theTime = parseFloat(document.getElementById('uTime').value);
+            var numFailures = parseInt(document.getElementById('FNum').value);
+            if(theTime===""||theTime<=0||numFailures===""||numFailures<=0||isNaN(theTime)||isNaN(numFailures)){
+            alert('Please enter the right values!');
+            }
+            else{
+            var mttfVal = (theTime)/(numFailures);
+            document.getElementById("mttf_result").innerHTML = mttfVal.toFixed(2);
+            sessionStorage.setItem("StoredMttf", mttfVal);
+
+            }
+
+           
+        }
+        function mttrCalcBTN(){
+            //mttr calculation
+            var theTime = parseFloat(document.getElementById('the_time').value);
+            var numRepairs = parseInt(document.getElementById('num_repairs').value);
+            if(theTime===""||theTime<=0||numRepairs===""||numRepairs<=0||isNaN(theTime)||isNaN(numRepairs)){
+            alert('Please enter the right values!');
+            }
+            else{
+            var mttrVal = (theTime)/(numRepairs);
+            document.getElementById("mttr_result").innerHTML = mttrVal.toFixed(2);
+            sessionStorage.setItem("storedMTTR",mttrVal);
+            }
+
+
+        }
+        function reliablityCalc(){
+            //reliablity calculation
+            var calculated = document.getElementById('calc').checked;
+            var userInput = document.getElementById('input').checked;
+            if(!calculated&&!userInput){
+            alert('You have to choose an option to proceed');
+            }
+            else{
+            if(userInput)
+            {
+            var MTTF = parseFloat(document.getElementById('MTTF').value);
+            var MTTR = parseFloat(document.getElementById('MTTR').value);
+            if(MTTF===""||MTTR===""||isNaN(MTTF)||isNaN(MTTR)||MTTF<0||MTTR<0){
+                alert('Please enter the right type of input');
+            }
+            else{
+            var reliabilityVal = (MTTF)+(MTTR);
+            }
+            }
+            else{
+            var theMTTF = parseFloat(sessionStorage.getItem("StoredMttf"));
+            var theMTTR = parseFloat(sessionStorage.getItem("storedMTTR"));
+            document.getElementById("MTTF").value = theMTTF;
+            document.getElementById("MTTR").value = theMTTR;
+            if(theMTTF===""||theMTTR===""||isNaN(theMTTF)||isNaN(theMTTR)||theMTTF<0||theMTTR<0){
+                alert('Please enter the right type of input');
+            }
+            else{
+            var reliabilityVal = theMTTF+theMTTR;
+            }
+            }
+            document.getElementById("rel_result").innerHTML = reliabilityVal.toFixed(2);
+        
+        }
+        }
+        function availCalc(){
+            var calculated = document.getElementById('calc2').checked;
+            var userInput = document.getElementById('input2').checked;
+            if(!calculated&&!userInput){
+                alert('You have to choose an option to proceed');
+            }
+            else{
+            if(userInput)
+            {
+            var MTTF = parseFloat(document.getElementById('MTTF2').value);
+            var MTTR = parseFloat(document.getElementById('MTTR2').value);
+            if(MTTF===""||MTTR===""||isNaN(MTTF)||isNaN(MTTR)||MTTF<=0||MTTR<=0){
+                alert('Please enter the right type of input');
+            }
+            else{
+            var availabilityVal = MTTF/(MTTF+MTTR)*100;
+            }}
+            else{
+            var theMTTF = parseFloat(sessionStorage.getItem("StoredMttf"));
+            var theMTTR = parseFloat(sessionStorage.getItem("storedMTTR"));
+            document.getElementById("MTTF2").value = theMTTF;
+            document.getElementById("MTTR2").value = theMTTR;
+
+
+            if(theMTTF===""||theMTTR===""||isNaN(theMTTF)||isNaN(theMTTR)||theMTTF<=0||theMTTR<=0){
+                alert('Please enter the right type of input');
+            }
+            else{
+
+
+            var availabilityVal = theMTTF/(theMTTF+theMTTR)*100;
+            }}
+
+            document.getElementById("avail_result").innerHTML = availabilityVal.toFixed(2) +"%";
+
+            }
+         }
+       
+    
+    
+                    
+    </script>
+</body>
+
+<footer>
+    <p>Website Created By: Shahd Mustafa, Rama Zied, Zeinab Alrubaiee, Paul Murariu</p>
+</footer>
+
+
+
+
+</html>

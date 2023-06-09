@@ -1,0 +1,109 @@
+html{
+    
+    line-height: 1.7
+}
+body{
+    font-family: 'PTSans', Arial , sans-serif;
+    font-size: 87%;
+    font-style: italic;
+    margin: 0;
+    padding-bottom: 100px;
+    background-color: #fff;
+}
+
+
+@media screen and (min-width: 1280px) {
+    body {
+      font-size: 16px;
+    }
+  
+    .mainB {
+      max-width: 1200px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .mainB {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+.mainB{
+    max-width: 940px;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 40px;
+   
+}
+
+header{
+    padding: 20px;
+    color: #fff;
+    background-color: #B3CCD2 ;
+}
+
+header h1{
+    margin: 0;
+    font-weight:normal;
+    font-size: 165%;
+}
+
+header p{
+    font-size: 90%;
+    margin: 0;
+}
+
+.info{
+    height: 450px;
+    max-width: 1000px;
+    margin: 40px auto 40px auto;
+    
+}
+
+.MTTF,
+.MTTR,
+.Reliability,
+.Availability{
+   padding: 30px 40px;
+background-color: #D9E5E9;
+ 
+}
+
+input,
+select{
+  font-size: 100%;
+}
+input[type="text"],
+select{
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 40px;
+  margin-bottom: 5px;
+  border: 1px solid #fff;
+  outline: none;
+    
+}
+input[type="text"]:focus{
+  border: 1px solid #B3CCD2;
+  box-shadow: inset 2px 2px 2px rgba(0,0,0, .13);
+}
+input[type="button"]{
+  width: 100%;
+  display: block;
+  background-color: #B3CCD2;
+  color: rgb(255,255,255);
+  padding: 10px 0;
+  border: 1px solid #9ABBC3;
+  border-radius: 3px;
+  outline: none;
+  margin-bottom: 10px;
+  
+}
+
+input[type="button"]:hover,
+input[type="button"]:focus{
+  border-color: black;
+    background-color: #C0D4DA;
+}
